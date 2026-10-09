@@ -1,0 +1,10 @@
+{
+  "description": "Manage financial transactions effortlessly with a mobile app designed for Ferro Norte, featuring order tracking, payment confirmation, and invoice management.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
