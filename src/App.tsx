@@ -8,6 +8,9 @@ import { InfoRow } from "./components/InfoRow";
 import { Icon } from "./components/Icon"; 
 import { Button } from "./components/Button";
 import { Header } from "./components/Header";
+import { OrderCard } from "./components/OrderCard"; 
+import { BottomNav } from "./components/BottomNav";
+import { ScreenShell } from "./components/ScreenShell";
 
 
 
@@ -25,43 +28,8 @@ import { Header } from "./components/Header";
 
 
 
-function OrderCard({ onClick, pending = false }: { onClick: () => void; pending?: boolean }) {
-  return (
-    <button className="order-card" onClick={onClick}>
-      <div className="order-card-top">
-        <div><small>Pedido</small><strong>#FN-1048</strong></div>
-        <Status tone={pending ? "warning" : "success"}>{pending ? "Pagamento pendente" : "Pago"}</Status>
-      </div>
-      <div className="order-card-bottom">
-        <span>22 mai 2025 · 3 itens</span>
-        <Money>R$ 4.248,00</Money>
-        <Icon name="chevron" size={18} />
-      </div>
-    </button>
-  );
-}
 
-function BottomNav({ current, go }: { current: Screen; go: (screen: Screen) => void }) {
-  const items: { screen: Screen; icon: IconName; label: string }[] = [
-    { screen: "home", icon: "home", label: "Início" },
-    { screen: "search", icon: "search", label: "Buscar" },
-    { screen: "purchases", icon: "document", label: "Pedidos" },
-    { screen: "more", icon: "menu", label: "Mais" },
-  ];
-  return (
-    <nav className="bottom-nav">
-      {items.map((item) => (
-        <button key={item.screen} className={current === item.screen ? "active" : ""} onClick={() => go(item.screen)}>
-          <Icon name={item.icon} /><span>{item.label}</span>
-        </button>
-      ))}
-    </nav>
-  );
-}
 
-function ScreenShell({ children, current, go, nav = true }: { children: ReactNode; current: Screen; go: (s: Screen) => void; nav?: boolean }) {
-  return <div className="screen"><main className="screen-content">{children}</main>{nav && <BottomNav current={current} go={go} />}</div>;
-}
 
 function Login({ go }: { go: (s: Screen) => void }) {
   const submit = (event: FormEvent) => { event.preventDefault(); go("home"); };
