@@ -1,6 +1,10 @@
 import { FormEvent, ReactNode, useState } from "react";
 import { ordersLines } from "./data";
 import type { IconName, Screen } from "./types";
+import { Brand } from "./components/brand";
+import { Status } from "./components/Status";
+import { Money } from "./components/Money";
+import { InfoRow } from "./components/InfoRow";
 
 
 const iconPaths: Record<IconName, ReactNode> = {
@@ -56,22 +60,11 @@ function Header({ title, onBack, action }: { title: string; onBack?: () => void;
   );
 }
 
-function Brand({ compact = false }: { compact?: boolean }) {
-  return (
-    <div className={`brand ${compact ? "brand-compact" : ""}`}>
-      <div className="brand-mark"><span /><span /><span /></div>
-      {!compact && <div><b>FERRO</b><small>NORTE</small></div>}
-    </div>
-  );
-}
 
-function Status({ tone, children }: { tone: "success" | "warning" | "neutral" | "danger"; children: ReactNode }) {
-  return <span className={`status status-${tone}`}><span className="status-dot" />{children}</span>;
-}
 
-function Money({ children }: { children: ReactNode }) {
-  return <span className="money">{children}</span>;
-}
+
+
+
 
 
 
@@ -183,9 +176,7 @@ function SearchOrder({ go }: { go: (s: Screen) => void }) {
   );
 }
 
-function InfoRow({ label, value }: { label: string; value: ReactNode }) {
-  return <div className="info-row"><span>{label}</span><strong>{value}</strong></div>;
-}
+
 
 function OrderDetails({ go }: { go: (s: Screen) => void }) {
   return (
