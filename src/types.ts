@@ -1,0 +1,35 @@
+export type Screen =
+  | "login"
+  | "home"
+  | "search"
+  | "order"
+  | "payment"
+  | "invoice"
+  | "receipt"
+  | "pending"
+  | "not-found"
+  | "already-issued"
+  | "third-party"
+  | "partial"
+  | "cancel"
+  | "purchases"
+  | "more";
+
+export type IconName =
+  | "arrow"
+  | "bag"
+  | "check"
+  | "chevron"
+  | "clock"
+  | "close"
+  | "document"
+  | "download"
+  | "home"
+  | "menu"
+  | "more"
+  | "receipt"
+  | "search"
+  | "shield"
+  | "user"
+  | "wallet";
+

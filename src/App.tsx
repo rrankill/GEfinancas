@@ -1,39 +1,7 @@
 import { FormEvent, ReactNode, useState } from "react";
+import { ordersLines } from "./data";
+import type { IconName, Screen } from "./types";
 
-type Screen =
-  | "login"
-  | "home"
-  | "search"
-  | "order"
-  | "payment"
-  | "invoice"
-  | "receipt"
-  | "pending"
-  | "not-found"
-  | "already-issued"
-  | "third-party"
-  | "partial"
-  | "cancel"
-  | "purchases"
-  | "more";
-
-type IconName =
-  | "arrow"
-  | "bag"
-  | "check"
-  | "chevron"
-  | "clock"
-  | "close"
-  | "document"
-  | "download"
-  | "home"
-  | "menu"
-  | "more"
-  | "receipt"
-  | "search"
-  | "shield"
-  | "user"
-  | "wallet";
 
 const iconPaths: Record<IconName, ReactNode> = {
   arrow: <><path d="m15 18-6-6 6-6" /></>,
@@ -105,11 +73,7 @@ function Money({ children }: { children: ReactNode }) {
   return <span className="money">{children}</span>;
 }
 
-const orderLines = [
-  { name: "Vergalhão CA-50 10mm", detail: "12m · 40 unidades", value: "R$ 2.184,00" },
-  { name: "Tubo galvanizado 2”", detail: "6m · 12 unidades", value: "R$ 1.134,00" },
-  { name: "Chapa de aço 3mm", detail: "2×1m · 4 unidades", value: "R$ 930,00" },
-];
+
 
 function OrderCard({ onClick, pending = false }: { onClick: () => void; pending?: boolean }) {
   return (
@@ -232,7 +196,7 @@ function OrderDetails({ go }: { go: (s: Screen) => void }) {
         <div className="timeline">
           {["Pedido realizado", "Pagamento aprovado", "Nota fiscal emitida", "Aguardando retirada"].map((item, index) => <div className={index < 3 ? "done" : "current"} key={item}><span>{index < 3 ? <Icon name="check" size={13} /> : index + 1}</span><div><strong>{item}</strong><small>{index < 3 ? ["22 mai, 09:42", "22 mai, 10:05", "22 mai, 14:30"][index] : "Disponível em 23 mai"}</small></div></div>)}
         </div>
-        <section className="card section-card"><div className="card-heading"><h2>Itens do pedido</h2><span>3 itens</span></div>{orderLines.map((line) => <div className="product-line" key={line.name}><div><strong>{line.name}</strong><small>{line.detail}</small></div><Money>{line.value}</Money></div>)}<div className="total-line"><span>Total</span><strong>R$ 4.248,00</strong></div></section>
+        <section className="card section-card"><div className="card-heading"><h2>Itens do pedido</h2><span>3 itens</span></div>{ordersLines.map((line) => <div className="product-line" key={line.name}><div><strong>{line.name}</strong><small>{line.detail}</small></div><Money>{line.value}</Money></div>)}<div className="total-line"><span>Total</span><strong>R$ 4.248,00</strong></div></section>
         <section className="card section-card"><div className="card-heading"><h2>Pagamento e retirada</h2></div><InfoRow label="Forma de pagamento" value="PIX" /><InfoRow label="Retirada" value="Balcão · Loja Norte" /><InfoRow label="Responsável" value="Marcos Almeida" /></section>
         <div className="action-stack"><Button onClick={() => go("receipt")} icon="receipt">Comprovante de liberação</Button><Button variant="secondary" onClick={() => go("invoice")} icon="document">Ver nota fiscal</Button></div>
       </div>
@@ -326,7 +290,7 @@ function PickupForm({ type, go }: { type: "third-party" | "partial" | "cancel"; 
         <span className="eyebrow">{configs.eyebrow}</span><h1>{configs.title}</h1><p>{configs.description}</p>
         <div className="order-ref"><Icon name="bag" /><div><small>PEDIDO</small><strong>#FN-1048 · R$ 4.248,00</strong></div></div>
         {type === "third-party" && <div className="field-stack"><label>Nome completo<input placeholder="Nome do responsável" /></label><label>CPF<input placeholder="000.000.000-00" /></label></div>}
-        {type === "partial" && <div className="check-list">{orderLines.map((line, i) => <label key={line.name}><input type="checkbox" defaultChecked={i < 2} /><span><strong>{line.name}</strong><small>{line.detail}</small></span><Money>{line.value}</Money></label>)}</div>}
+        {type === "partial" && <div className="check-list">{ordersLines.map((line, i) => <label key={line.name}><input type="checkbox" defaultChecked={i < 2} /><span><strong>{line.name}</strong><small>{line.detail}</small></span><Money>{line.value}</Money></label>)}</div>}
         {type === "cancel" && <div className="field-stack"><label>Tipo de solicitação<select defaultValue=""><option value="" disabled>Selecione uma opção</option><option>Cancelar pedido</option><option>Devolver materiais</option></select></label><label>Motivo<textarea placeholder="Descreva brevemente o motivo" rows={4} /></label></div>}
         <div className="notice"><Icon name="shield" /><p>{type === "cancel" ? "A solicitação será analisada em até 2 dias úteis." : "Os dados informados são usados somente para validar esta operação."}</p></div>
         <Button onClick={() => go("home")}>{configs.button}</Button>
