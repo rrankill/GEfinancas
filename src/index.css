@@ -18,6 +18,13 @@
   --white: #ffffff;
 }
 
+.field-error {
+  display: block;
+  margin-top: 4px;
+  color: #c0392b;
+  font-size: 12px;
+}
+
 * { box-sizing: border-box; }
 body { margin: 0; min-width: 320px; min-height: 100vh; background: #e8ece9; }
 button, input, select, textarea { font: inherit; }
