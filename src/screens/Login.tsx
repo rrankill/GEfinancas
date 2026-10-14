@@ -4,13 +4,13 @@ import { Brand } from "../components/brand";
 import { Button } from "../components/Button";
 import { Icon } from "../components/Icon";
 
-const EMAIL_VALIDO = "operacoes@ferronorte.com.br";
+const EMAIL_VALIDO = "operarcoes@corporativo.com.br";
 const SENHA_VALIDA = "12345678";
 
 type FormErrors = { email?: string; password?: string; form?: string };
 
 export function Login({ go }: { go: (s: Screen) => void }) {
-  const [email, setEmail] = useState("operacoes@ferronorte.com.br");
+  const [email, setEmail] = useState("operarcoes@corporativo.com.br");
   const [password, setPassword] = useState("12345678");
   const [errors, setErrors] = useState<FormErrors>({});
 
