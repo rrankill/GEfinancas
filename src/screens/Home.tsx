@@ -14,7 +14,7 @@ export function Home({ go, openOrder }: { go: (s: Screen) => void; openOrder: (o
       </div>
       <section className="hero-card">
         <span>Vendas processadas este mês</span>
-        <strong>R$ 18.730,50</strong>
+        <strong>R$ .........</strong>
         <div><small>4 pedidos</small><i /><small>1 aguardando retirada</small></div>
         <div className="hero-beam beam-one" /><div className="hero-beam beam-two" />
       </section>
