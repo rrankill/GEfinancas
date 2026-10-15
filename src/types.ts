@@ -33,3 +33,12 @@ export type IconName =
   | "user"
   | "wallet";
 
+export type OrderLine = { name: string; detail: string; value: string };
+
+export type Order = {
+  code: string;
+  date: string;
+  total: string;
+  pending: boolean;
+  lines: OrderLine[];
+};

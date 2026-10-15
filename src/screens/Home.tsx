@@ -1,10 +1,11 @@
-import type { Screen } from "../types";
+import type { Order, Screen } from "../types";
+import { orders } from "../data";
 import { Brand } from "../components/brand";
 import { Icon } from "../components/Icon";
 import { OrderCard } from "../components/OrderCard";
 import { ScreenShell } from "../components/ScreenShell";
 
-export function Home({ go }: { go: (s: Screen) => void }) {
+export function Home({ go, openOrder }: { go: (s: Screen) => void; openOrder: (o: Order) => void }) {
   return (
     <ScreenShell current="home" go={go}>
       <div className="home-header">
@@ -26,9 +27,9 @@ export function Home({ go }: { go: (s: Screen) => void }) {
       </section>
       <section className="section">
         <div className="section-heading"><h2>Pedidos recentes</h2><button onClick={() => go("purchases")}>Ver todos</button></div>
-        <OrderCard onClick={() => go("order")} />
-        <div className="spacer-small" />
-        <OrderCard pending onClick={() => go("pending")} />
+        {orders.slice(0, 2).map((order) => (
+          <OrderCard key={order.code} order={order} onClick={() => openOrder(order)} />
+        ))}
       </section>
     </ScreenShell>
   );

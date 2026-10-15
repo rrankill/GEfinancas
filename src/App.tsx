@@ -1,5 +1,6 @@
 import { useState } from "react";
-import type { Screen } from "./types";
+import type { Order, Screen } from "./types";
+import { orders } from "./data";
 import { Login } from "./screens/Login";
 import { Home } from "./screens/Home";
 import { SearchOrder } from "./screens/SearchOrder";
@@ -12,11 +13,14 @@ import { PickupForm } from "./screens/PickupForm";
 export default function App() {
   const [screen, setScreen] = useState<Screen>("login");
   const go = (next: Screen) => { setScreen(next); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  const [, setSelectedOrder] = useState<Order>(orders[0]);
+  const openOrder = (order: Order) => { setSelectedOrder(order); go(order.pending ? "pending" : "order"); };
+
   if (screen === "login") return <Login go={go} />;
-  if (screen === "home") return <Home go={go} />;
-  if (screen === "search") return <SearchOrder go={go} />;
+  if (screen === "home") return <Home go={go} openOrder={openOrder} />;
+  if (screen === "search") return <SearchOrder go={go} openOrder={openOrder} />;
   if (screen === "order") return <OrderDetails go={go} />;
-  if (screen === "purchases") return <Purchases go={go} />;
+  if (screen === "purchases") return <Purchases go={go} openOrder={openOrder} />;
   if (screen === "more") return <More go={go} />;
   if (screen === "third-party" || screen === "partial" || screen === "cancel") return <PickupForm type={screen} go={go} />;
   return <StatePage type={screen} go={go} />;
