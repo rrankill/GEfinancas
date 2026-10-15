@@ -8,7 +8,7 @@ import { ScreenShell } from "../components/ScreenShell";
 const stateData: Record<Exclude<Screen, "login" | "home" | "search" | "order" | "purchases" | "more" | "third-party" | "partial" | "cancel">, { tone: string; icon: IconName; eyebrow: string; title: string; body: (order: Order) => string }> = {
   payment: { tone: "success", icon: "check", eyebrow: "PAGAMENTO CONFIRMADO", title: "Tudo certo!", body: (order) => `Recebemos o pagamento do pedido ${order.code}. Já estamos preparando sua nota fiscal.` },
   invoice: { tone: "success", icon: "document", eyebrow: "NOTA EMITIDA", title: "Nota fiscal disponível", body: () => "A NF-e 000.018.492 foi emitida e já está vinculada ao pedido." },
-  receipt: { tone: "success", icon: "shield", eyebrow: "PEDIDO LIBERADO", title: "Comprovante de liberação", body: () => "Apresente este código no balcão para retirar os materiais do pedido." },
+  receipt: { tone: "success", icon: "shield", eyebrow: "COMPROVANTE DE LIBERAÇÃO", title: "Comprovante de liberação", body: () => "Imprima e entregue ao cliente. O código será conferido na retirada." },
   pending: { tone: "warning", icon: "clock", eyebrow: "AGUARDANDO PAGAMENTO", title: "Pagamento pendente", body: (order) => `O pedido ${order.code} está reservado. Conclua o PIX até hoje, às 17:30.` },
   "not-found": { tone: "neutral", icon: "search", eyebrow: "SEM RESULTADOS", title: "Pedido não encontrado", body: () => "Não localizamos um pedido com esse código. Confira os dados e tente novamente." },
   "already-issued": { tone: "warning", icon: "document", eyebrow: "NOTA JÁ PROCESSADA", title: "Nota já emitida", body: () => "Este pedido já possui uma nota fiscal. Você pode visualizar ou baixar o documento abaixo." },

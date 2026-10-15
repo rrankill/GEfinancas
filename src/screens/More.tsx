@@ -7,7 +7,7 @@ import { ScreenShell } from "../components/ScreenShell";
 const operations: { screen: Screen; icon: IconName; title: string; text: string; tone: string }[] = [
   { screen: "payment", icon: "check", title: "Confirmação de pagamento", text: "Pagamento aprovado e confirmado", tone: "green" },
   { screen: "invoice", icon: "document", title: "Emissão da nota", text: "NF-e pronta para download", tone: "green" },
-  { screen: "receipt", icon: "shield", title: "Comprovante de liberação", text: "Código para retirada no balcão", tone: "orange" },
+  { screen: "receipt", icon: "shield", title: "Comprovante de liberação", text: "Código para retirada no balcão", tone: "green" },
   { screen: "already-issued", icon: "receipt", title: "Nota já emitida", text: "Documento processado anteriormente", tone: "gray" },
   { screen: "third-party", icon: "user", title: "Retirada por outra pessoa", text: "Autorizar um novo responsável", tone: "gray" },
   { screen: "partial", icon: "bag", title: "Retirada parcial", text: "Selecionar itens para retirada", tone: "gray" },
